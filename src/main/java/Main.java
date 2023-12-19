@@ -112,34 +112,7 @@ class FantasyBookFactory implements BookFactory{
 }
 
 //Strategy Pattern
-interface PaymentStrategy{
-    void processPayment(double amount);
-}
-class CardPayment implements PaymentStrategy{
-    private String cardNumber;
-    CardPayment(String cardNumber){
-        this.cardNumber=cardNumber;
-    }
-    @Override
-    public void processPayment(double amount) {}
-}
-class PayPalPayment implements PaymentStrategy{
-    private String email;
-    PayPalPayment(String email){
-        this.email=email;
-    }
-    @Override
-    public void processPayment(double amount) {
 
-    }
-}
-class BookStore{
-    private PaymentStrategy ps;
-    public void setPs(PaymentStrategy ps){
-        this.ps=ps;
-    }
-    public void checkout(double totalAmount){}
-}
 
 public class Main extends Application{
     private WebView webView;
