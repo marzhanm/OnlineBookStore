@@ -1,5 +1,11 @@
 package main.java;
 import javafx.application.Application;
+import java.io.*;
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URISyntaxException;
+
 import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -114,27 +120,35 @@ class FantasyBookFactory implements BookFactory{
 //Strategy Pattern
 
 
-public class Main extends Application{
+public class Main {
     private WebView webView;
     private WebEngine webEngine;
     private static final String HOME_HTML = "file:///C:/Users/user/IdeaProjects/Online%20Book%20Store/src/resources/Home.html";
-    private static final String CATEGORY_HTML = "file:///C:/Users/user/IdeaProjects/Online%20Book%20Store/src/resources/Categories.html";
-
     public static void main(String[] args) {
-        launch(args);
+        String htmlFilePath = "C:/Users/user/IdeaProjects/Online Book Store/src/resources/Home.html";
+
+        openHTMLInBrowser(htmlFilePath);
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Main Page");
+    private static void openHTMLInBrowser(String filePath) {
+        try {
+            File htmlFile = new File(filePath);
 
-        webView = new WebView();
-        webEngine = webView.getEngine();
-        webEngine.load(HOME_HTML);
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
 
-        Scene scene = new Scene(webView, 1200, 800);
-        primaryStage.setScene(scene);
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    desktop.browse(htmlFile.toURI());
+                } else {
+                    System.out.println("Browsing is not supported on this platform.");
+                }
+            } else {
+                System.out.println("Desktop is not supported on this platform.");
+            }
 
-        primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 }
