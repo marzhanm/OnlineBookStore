@@ -107,6 +107,7 @@ class SumCartCommand implements CartCommand{
         }
     }
 
+
 }
 
 //sql query to sum total:SELECT SUM(price) as summary FROM books WHERE book_id IN ();
