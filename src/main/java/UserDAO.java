@@ -7,6 +7,7 @@ import java.sql.SQLException;
 public class UserDAO {
     private Connection connection;
     private PreparedStatement preparedStatement;
+    private String password;
 
     public UserDAO(Connection connection) {
         this.connection = connection;
@@ -30,8 +31,8 @@ public class UserDAO {
         try {
             String query = "SELECT * FROM users WHERE email = ? AND password = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, email().toString());
-            preparedStatement.setString(1, password().toString());
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 return resultSet.next();
@@ -42,11 +43,6 @@ public class UserDAO {
             return false;
         }
     }
-    private Object email() {
-        return null;
-    }
 
-    private Object password() {
-        return null;
-    }
 }
+
