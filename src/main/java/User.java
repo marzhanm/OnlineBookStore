@@ -1,8 +1,10 @@
 package main.java;
 
 public class User {
-    public String getEmail(){
-        return null;
+ private String email;
+ private String password;
+    public String getEmail() {
+return email;
     }
     public String getPassword() {
         return null;

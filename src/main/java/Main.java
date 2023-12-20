@@ -1,28 +1,29 @@
 package main.java;
 import java.io.*;
-import java.util.*;
 import java.awt.Desktop;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-public class Main {
-    private WebView webView;
-    private WebEngine webEngine;
-    private static final String HOME_HTML = "file:///C:/Users/user/IdeaProjects/Online%20Book%20Store/src/resources/Home.html";
-    public static void main(String[] args) {
-        String htmlFilePath = "C:/Users/user/IdeaProjects/Online Book Store/src/resources/Home.html";
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
-        openHTMLInBrowser(htmlFilePath);
+public class Main {
+    public static void main(String[] args) {
+        openJSPInBrowser("web/WEB-INF/Home.jsp");
     }
 
-    private static void openHTMLInBrowser(String filePath) {
+    private static void openJSPInBrowser(String jspFilePath) {
         try {
-            File htmlFile = new File(filePath);
+            File jspFile = new File(jspFilePath);
+            String encodedFilePath = "file:" + URLEncoder.encode(jspFile.getAbsolutePath(), StandardCharsets.UTF_8.toString());
+
+            // Replace %20 with spaces
+            encodedFilePath = encodedFilePath.replace("%20", " ");
 
             if (Desktop.isDesktopSupported()) {
                 Desktop desktop = Desktop.getDesktop();
 
                 if (desktop.isSupported(Desktop.Action.BROWSE)) {
-                    desktop.browse(htmlFile.toURI());
+                    desktop.browse(new URI(encodedFilePath));
                 } else {
                     System.out.println("Browsing is not supported on this platform.");
                 }
@@ -30,9 +31,8 @@ public class Main {
                 System.out.println("Desktop is not supported on this platform.");
             }
 
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
-
 }
