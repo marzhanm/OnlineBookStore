@@ -12,20 +12,21 @@ public class UserDAO {
         this.connection = connection;
     }
     public boolean addUser(User user){
+        boolean f = false;
         try {
             String query = "INSERT INTO users(user_name, user_email, user_pass) VALUES (?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, user.getUsername());
-                preparedStatement.setString(1, user.getEmail());
-                preparedStatement.setString(1, user.getPassword());
+                preparedStatement.setString(2, user.getEmail());
+                preparedStatement.setString(3, user.getPassword());
 
                 int rowsAffected = preparedStatement.executeUpdate();
-                return rowsAffected > 0;
+                if(rowsAffected==1){f=true;}
             }
         } catch (SQLException e){
             e.printStackTrace();
-            return false;
         }
+        return f;
     }
     public User authenticateUser(String email, String password){
         User user = null;

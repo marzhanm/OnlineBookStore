@@ -28,25 +28,25 @@
     <img class="Image40" style="width: 600px; height: 600px; left: 66px; top: 249px; position: absolute" src="images/sign%20up.png" />
     <div class="CreateAccount" style="left: 918px; top: 203px; position: absolute; color: #AC795A; font-size: 40px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">Create Account</div>
     <div class="Rectangle39" style="width: 323px; height: 80px; left: 934px; top: 784px; position: absolute; background: #AC795A; border-radius: 50px"></div>
-    <button type="submit" style="width: 323px; height: 80px; left: 934px; top: 784px; position: absolute; background: #AC795A; border-radius: 50px; text-decoration-color: #F5F5F5">Sign Up</button>
     <div class="Rectangle37" style="width: 531px; height: 80px; left: 816px; top: 344px; position: absolute; background: white; border-radius: 50px; border: 3px #AC795A solid"></div>
     <div class="Rectangle38" style="width: 531px; height: 80px; left: 816px; top: 484px; position: absolute; background: white; border-radius: 50px; border: 3px #AC795A solid"></div>
-    <form method="post">
+    <form action="Registration" method="post">
     <div class="Username" style="left: 816px; top: 308px; position: absolute; color: #AC795A; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">Username</div>
     <div class="EmailAddress" style="left: 816px; top: 448px; position: absolute; color: #AC795A; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">Email Address</div>
     <div class="YourUsername" style="left: 864px; top: 374px; position: absolute; color: #D9D9D9; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">
         <label for="username"></label>
-        <input type="text" id="username" class="form-control" placeholder="Your username" required style="border: transparent"/>
+        <input type="text" id="username" class="form-control" placeholder="Your username" required style="border: transparent" name="username"/>
     </div>
     <div class="YourEmailAddress" style="left: 864px; top: 514px; position: absolute; color: #D9D9D9; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">
         <label for="email"></label>
-        <input type="email" id="email" class="form-control" placeholder="Your email address" required style="border: transparent"/>
+        <input type="email" id="email" class="form-control" placeholder="Your email address" required style="border: transparent" name="email"/>
     </div>
     <div class="Password" style="left: 824px; top: 588px; position: absolute; color: #AC795A; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">Password</div>
     <div class="Rectangle37" style="width: 523px; height: 80px; left: 824px; top: 624px; position: absolute; background: white; border-radius: 50px; border: 3px #AC795A solid"></div>
     <div class="AtLeast8Characters" style="left: 856px; top: 654px; position: absolute; color: #D9D9D9; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">
         <label for="password"></label>
-        <input type="password" id="password" class="form-control" placeholder="At least 8 characters" required style="border: transparent"/>    </div>
+        <input type="password" id="password" class="form-control" placeholder="At least 8 characters" required style="border: transparent" name="password"/>    </div>
+        <button type="submit" style="width: 323px; height: 80px; left: 934px; top: 784px; position: absolute; background: #AC795A; border-radius: 50px; text-decoration-color: #F5F5F5">Sign Up</button>
     </form>
 </div>
 </body>
