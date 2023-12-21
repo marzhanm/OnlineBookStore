@@ -19,7 +19,7 @@ public class DatabaseFacade {
     public boolean registerUser(User user){
         return userDAO.addUser(user);
     }
-    public boolean authenticateUser(String email, String password){
+    public User authenticateUser(String email, String password){
         return userDAO. authenticateUser(email, password);
     }
 }

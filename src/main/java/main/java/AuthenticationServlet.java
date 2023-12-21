@@ -27,7 +27,7 @@ public class AuthenticationServlet extends HttpServlet {
             String email=request.getParameter("email");
             String password=request.getParameter("password");
 
-            if (facade.authenticateUser(email, password)) {
+            if (facade.authenticateUser(email, password) !=null) {
                 response.sendRedirect("Home.jsp"); //redirect to home page if authentication was successful
             } else {
                 response.sendRedirect("Log%20in.jsp"); //gives other chance for user to authenticate
@@ -35,7 +35,5 @@ public class AuthenticationServlet extends HttpServlet {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
-
 }
