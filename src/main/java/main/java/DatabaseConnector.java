@@ -1,7 +1,7 @@
 package main.java;
+
 import main.java.model.BookD;
 
-import java.sql.*;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;

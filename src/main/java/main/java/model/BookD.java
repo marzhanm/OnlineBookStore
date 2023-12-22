@@ -9,9 +9,7 @@ public class BookD {
     private double price;
     private String image;
 
-    public BookD() {
-
-    }
+    public BookD() {}
 
     public int getBook_id() {
         return book_id;
@@ -68,11 +66,4 @@ public class BookD {
         this.image = image;
     }
 
-    public BookD(String bookName, int cat_id, int aut_id, int pub_id, double price) {
-        this.bookName = bookName;
-        this.cat_id = cat_id;
-        this.aut_id = aut_id;
-        this.pub_id = pub_id;
-        this.price = price;
-    }
 }

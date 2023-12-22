@@ -1,6 +1,6 @@
 <%@ page import="main.java.dao.BookDAO" %>
 <%@ page import="main.java.DatabaseConnector" %>
-<%@ page import="main.java.model.BookD" %>
+<%@ page import="main.java.BookD" %>
 <%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: user
@@ -21,10 +21,9 @@
 </head>
 <body>
 
-<jsp:useBean id="add" type="main.java.servlet.AddCartCommand"/>
-<c:if test="${not empty add}">
+<c:if test="${not empty addCart}">
   <div class="message">
-      ${add}
+      ${addCart}
   </div>
   <script type="text/javascript">
     showMessage();
@@ -115,7 +114,7 @@
     <span class="text"><%=dao.getBookById(931).getBookName()%></span>” <br/>Stephen King
     <div style="width: 47px; height: 20px; left: 302px; top: 1174px; position: absolute">
       <div class="Rectangle30" style="width: 47px; height: 20px; left: 0px; top: 0px; position: absolute; background: #AC795C; border-radius: 30px"></div>
-      <a href="add?book_id=<%=b.getBook_id()%>"><img class="8" style="width: 47px; height: 20px; left: 0px; top: 0px; position: absolute" src="images/telezhka.png" /></a>
+      <a href="add?book_id=<%=931%>"><img class="8" style="width: 47px; height: 20px; left: 0px; top: 0px; position: absolute" src="images/telezhka.png" /></a>
     </div>
   </div>
   <div class="TheInstituteStephenKing" style="width: 207px; left: 445px; top: 1120px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">“The Institute” Stephen King</div>

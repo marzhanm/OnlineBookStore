@@ -1,6 +1,5 @@
 package main.java.dao;
 
-import main.java.model.BookD;
 import main.java.model.Cart;
 
 import java.sql.Connection;
