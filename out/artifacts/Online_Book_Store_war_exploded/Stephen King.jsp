@@ -1,7 +1,8 @@
 <%@ page import="main.java.dao.BookDAO" %>
 <%@ page import="main.java.DatabaseConnector" %>
 <%@ page import="main.java.model.BookD" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 22.12.2023
@@ -84,14 +85,17 @@
 
 <%--  Stephen King --%>
   <%
-
-    BookDAO dao= null;
+    BookDAO dao = null;
     try {
       dao = new BookDAO(DatabaseConnector.getConnection());
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
-    BookD b= (BookD) dao.getByCategoriesAuthors("Horror", "Stephen King");
+    List<BookD> books = dao.getByCategoriesAuthors("Horror", "Stephen King");
+
+    // Check if the list is not empty before trying to get the first book
+    if (!books.isEmpty()) {
+      BookD b = books.get(0);
   %>
   <div class="Line11" style="width: 109px; height: 0px; left: 176px; top: 382.50px; position: absolute; border: 1px black solid"></div>
   <div class="StephenKingSBooks" style="width: 196px; left: 622px; top: 628px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 600; word-wrap: break-word">Stephen King’s Books</div>
@@ -110,13 +114,16 @@
     <div class="Rectangle30" style="width: 47px; height: 20px; left: 0px; top: 0px; position: absolute; background: #AC795C; border-radius: 30px"></div>
     <a href="Cart.jsp"><img class="8" style="width: 47px; height: 20px; left: 0px; top: 0px; position: absolute" src="images/telezhka.png" /></a>
   </div>
-  <div class="FairyTaleStephenKing" style="width: 200px; left: 99px; top: 1118px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">“
-    <span class="text"><%=dao.getBookById(931).getBookName()%></span>” <br/>Stephen King
-    <div style="width: 47px; height: 20px; left: 302px; top: 1174px; position: absolute">
-      <div class="Rectangle30" style="width: 47px; height: 20px; left: 0px; top: 0px; position: absolute; background: #AC795C; border-radius: 30px"></div>
-      <a href="add?book_id=<%=931%>"><img class="8" style="width: 47px; height: 20px; left: 0px; top: 0px; position: absolute" src="images/telezhka.png" /></a>
-    </div>
+  <div class="FairyTaleStephenKing" style="left: 99px; top: 1118px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">
+    “<span class="text"><%= b.getBookName() %></span>” <br/>Stephen King
   </div>
+  <div style="width: 47px; height: 20px; left: 302px; top: 1174px; position: absolute">
+    <div class="Rectangle30" style="width: 47px; height: 20px; left: 0px; top: 0px; position: absolute; background: #AC795C; border-radius: 30px"></div>
+    <a href="add?book_id=<%= b.getBook_id() %>"><img class="8" style="width: 47px; height: 20px; left: 0px; top: 0px; position: absolute" src="images/telezhka.png" /></a>
+  </div>
+  <%
+    }
+  %>
   <div class="TheInstituteStephenKing" style="width: 207px; left: 445px; top: 1120px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">“The Institute” Stephen King</div>
   <div class="965" style="left: 99px; top: 1174px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">$9.65</div>
   <div class="1275" style="left: 445px; top: 1176px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 400; word-wrap: break-word">$12.75</div>

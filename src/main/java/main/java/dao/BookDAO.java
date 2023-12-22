@@ -24,12 +24,7 @@ public class BookDAO {
 
             ResultSet rs=ps.executeQuery();
             while (rs.next()){
-                b=new BookD();
-                b.setBook_id(rs.getInt(1));
-                b.setBookName(rs.getString(2));
-                b.setCat_id(rs.getInt(3));
-                b.setAut_id(rs.getInt(4));
-                b.setPub_id(rs.getInt(5));
+                b = getBookD(rs);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -37,8 +32,19 @@ public class BookDAO {
         return b;
     }
 
+    private BookD getBookD(ResultSet rs) throws SQLException {
+        BookD b;
+        b=new BookD();
+        b.setBook_id(rs.getInt(1));
+        b.setBookName(rs.getString(2));
+        b.setCat_id(rs.getInt(3));
+        b.setAut_id(rs.getInt(4));
+        b.setPub_id(rs.getInt(5));
+        return b;
+    }
+
     public List<BookD> getByCategoriesAuthors(String cat_name, String aut_name) {
-        ArrayList<BookD> bookDS= new ArrayList<>();
+        List<BookD> bookDS= new ArrayList<>();
         BookD d;
         try {
             String catautQ = "SELECT * FROM books b JOIN categories c ON b.cat_id=c.cat_id JOIN authors a ON b.aut_id=a.aut_id WHERE c.cat_name=? AND a.aut_name=?";
@@ -47,12 +53,7 @@ public class BookDAO {
             ps.setString(2, aut_name);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
-                d = new BookD();
-                d.setBook_id(rs.getInt(1));
-                d.setBookName(rs.getString(2));
-                d.setCat_id(rs.getInt(3));
-                d.setAut_id(rs.getInt(4));
-                d.setPub_id(rs.getInt(5));
+                d = getBookD(rs);
                 d.setPrice(rs.getDouble(6));
                 bookDS.add(d);            }
 

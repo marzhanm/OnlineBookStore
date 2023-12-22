@@ -6,7 +6,9 @@ import main.java.dao.CartDAO;
 import main.java.model.BookD;
 import main.java.model.Cart;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,12 +16,25 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/add")
-public class AddCartCommand implements CartCommand {
+public class AddCartCommand extends HttpServlet implements CartCommand {
     protected CartDAO cartDAO;
     protected Cart cart;
 
+    public AddCartCommand(){}
     public AddCartCommand(CartDAO cartDAO) {
         this.cartDAO=cartDAO;
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        execute(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        execute(request, response);
     }
 
     @Override
@@ -32,6 +47,7 @@ public class AddCartCommand implements CartCommand {
             BookD books=bookDAO.getBookById(book_id);
             HttpSession session=request.getSession();
             Cart cart=new Cart();
+            cart.setCid(1);
             cart.setBook_id(book_id);
             cart.setUser_id(1);
             cart.setBook_name(books.getBookName());
