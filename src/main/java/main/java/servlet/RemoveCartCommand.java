@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/removeBook")
+@WebServlet("/remove")
 public class RemoveCartCommand implements CartCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {

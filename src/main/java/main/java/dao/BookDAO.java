@@ -18,7 +18,7 @@ public class BookDAO {
     }
 
     public BookD getBookById(int id) {
-        Book b=null;
+        BookD b=null;
         try {
             String getById="SELECT * FROM books WHERE book_id=?";
             PreparedStatement ps=connection.prepareStatement(getById);
@@ -26,33 +26,38 @@ public class BookDAO {
 
             ResultSet rs=ps.executeQuery();
             while (rs.next()){
-
+                b=new BookD();
+                b.setBook_id(rs.getInt(1));
+                b.setBookName(rs.getString(2));
+                b.setCat_id(rs.getInt(3));
+                b.setAut_id(rs.getInt(4));
+                b.setPub_id(rs.getInt(5));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return b;
     }
 
-    public List<BookD> getByCategories(String cat_name) {
-        List<BookD> list=new ArrayList<BookD>();
-        BookD d=null;
-        try {
-            String catQ = "SELECT * FROM books b JOIN categories c ON b.cat_id=c.cat_id WHERE c.cat_name=?";
-            PreparedStatement ps=connection.prepareStatement(catQ);
-            ps.setString(1, cat_name);
-
-            ResultSet rs= ps.executeQuery();
-            int i=1;
-            while (rs.next() && i<=4){
-                gett(list, rs);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return list;
-    }
+//    public List<BookD> getByCategories(String cat_name) {
+//        List<BookD> list=new ArrayList<BookD>();
+//        BookD d=null;
+//        try {
+//            String catQ = "SELECT * FROM books b JOIN categories c ON b.cat_id=c.cat_id WHERE c.cat_name=?";
+//            PreparedStatement ps=connection.prepareStatement(catQ);
+//            ps.setString(1, cat_name);
+//
+//            ResultSet rs= ps.executeQuery();
+//            int i=1;
+//            while (rs.next() && i<=4){
+//                gett(list, rs);
+//            }
+//
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return list;
+//    }
     public List<BookD> getByCategoriesAuthors(String cat_name, String aut_name) {
         List<BookD> list=new ArrayList<BookD>();
         BookD d=null;

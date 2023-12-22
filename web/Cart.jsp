@@ -1,4 +1,9 @@
-<%--
+<%@ page import="main.java.dao.CartDAO" %>
+<%@ page import="main.java.DatabaseConnector" %>
+<%@ page import="main.java.model.Cart" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 21.12.2023
@@ -16,8 +21,24 @@
   <title>Cart</title>
 </head>
 <body>
-<form action="cart">
+<form action="add">
 <div style="width: 1440px; height: 1024px; position: relative; background: #EFEDDE">
+  <%
+    CartDAO dao=null;try {
+dao = new CartDAO(DatabaseConnector.getConnection());} catch (SQLException e) {
+    throw new RuntimeException(e);
+}
+    List<Cart> cart= Collections.singletonList(dao.getBookByUser(1));
+    Double totalPrice=0.0;
+    for (Cart c:cart){
+  %>
+  <div class="Group5" style="height: 84px; left: 368px; top: 181px; position: absolute">
+    <div class="KlaraAndTheSunKazuoIshiguro" style="width: 168px; left: 0px; top: 0px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">"<%=c.getBook_name()%>"  <%=c.getAuthor()%></div>
+    <div class="300" style="left: 0px; top: 64px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 600; word-wrap: break-word">$<%=c.getPrice()%></div>
+  </div>
+  <div class="Tovar" style="left: 857px; top: 159px; position: absolute">
+    <div class="300" style="left: 360px; top: 0px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">$<%=c.getTotal_price()%></div>
+  </div>
   <div class="Line18" style="width: 560px; height: 0px; left: 64px; top: 136px; position: absolute; border: 1px #AC795A solid"></div>
   <div class="Rectangle75" style="width: 736px; height: 1024px; left: 704px; top: 0px; position: absolute; background: white"></div>
   <div class="Total" style="left: 857px; top: 290px; position: absolute">
@@ -32,7 +53,16 @@
     <div class="Rectangle76" style="width: 423px; height: 53px; left: 0px; top: 0px; position: absolute; background: #AC795A; border-radius: 50px"></div>
     <a href="Payment%20Method.html"><div class="PaymentMethods" style="left: 99px; top: 12px; position: absolute; color: white; font-size: 24px; font-family: Montserrat; font-weight: 500; word-wrap: break-word">Payment Methods</div></a>
   </div>
-</div>
+    <div class="Check2" style="width: 20px; height: 20px; left: 99px; top: 297px; position: absolute">
+      <div class="Rectangle73" style="width: 20px; height: 20px; left: 0px; top: 0px; position: absolute; border: 1px #AC795A solid"></div>
+      <img class="MaterialSymbolsCheck2" style="width: 12px; height: 12px; left: 4px; top: 4px; position: absolute" src="images/material-symbols_check.png" />
+    </div>
+    <div class="Check" style="width: 231px; height: 30px; left: 368px; top: 291px; position: absolute">
+      <div class="Group4" style="width: 30px; height: 30px; left: 201px; top: 0px; position: absolute">
+        <div class="Rectangle41" style="width: 30px; height: 30px; left: 0px; top: 0px; position: absolute; border-radius: 5px; border: 1px #AC795A solid"></div>
+        <a href="remove"><img class="Trash" style="width: 24px; height: 24px; left: 3px; top: 3px; position: absolute" src="images/mdi_trash-can-outline.png" /></a>
+      </div>
+    </div>
 <a href="Home.jsp"><img class="SimpleLineIconsArrowUp1" style="width: 20px; height: 20px; left: 64px; top: 26px; position: absolute" src="images/simple-line-icons_arrow-up.png" /></a>
 </form>
 </body>

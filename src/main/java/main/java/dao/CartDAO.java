@@ -1,9 +1,11 @@
 package main.java.dao;
 
+import main.java.model.BookD;
 import main.java.model.Cart;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CartDAO {
@@ -53,5 +55,31 @@ public class CartDAO {
             throw new RuntimeException(e);
         }
         return f;
+    }
+
+    public Cart getBookByUser(int user_id){
+        Cart c=null;
+        double totalPrice=0;
+        try {
+            String uQ="SELECT * FROM cart WHERE user_id=?";
+            PreparedStatement ps=connection.prepareStatement(uQ);
+            ps.setInt(1, 1);
+
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()){
+                c=new Cart();
+                c.setCid(rs.getInt(1));
+                c.setBook_id(rs.getInt(2));
+                c.setUser_id(rs.getInt(user_id));
+                c.setBook_name(rs.getString(4));
+                c.setAuthor(rs.getString(5));
+                c.setPrice(rs.getDouble(6));
+                totalPrice=totalPrice+rs.getDouble(7);
+                c.setTotal_price(totalPrice);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return c;
     }
 }

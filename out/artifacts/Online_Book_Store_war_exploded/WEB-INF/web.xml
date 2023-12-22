@@ -6,12 +6,5 @@
     <welcome-file-list>
         <welcome-file>Home.jsp</welcome-file> <!-- Specify your welcome file -->
     </welcome-file-list>
-    <servlet>
-        <servlet-name>AuthenticationServlet</servlet-name>
-        <servlet-class>main.java.AuthenticationServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AuthenticationServlet</servlet-name>
-        <url-pattern>/authentication</url-pattern>
-    </servlet-mapping>
+
 </web-app>
