@@ -1,4 +1,7 @@
-package main.java;
+package main.java.servlet;
+import main.java.DatabaseConnector;
+import main.java.DatabaseFacade;
+
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;

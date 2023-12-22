@@ -1,4 +1,6 @@
 package main.java;
+import main.java.model.BookD;
+
 import java.sql.*;
 import java.util.List;
 import java.sql.Connection;
@@ -13,7 +15,7 @@ public class DatabaseConnector {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
-    public static String createInClause(List<Book> books) {
+    public static String createInClause(List<BookD> books) {
         StringBuilder inClause = new StringBuilder();
         for (int i = 0; i < books.size(); i++) {
             inClause.append("?");

@@ -1,4 +1,7 @@
 package main.java;
+import main.java.dao.UserDAO;
+import main.java.model.User;
+
 import java.sql.SQLException;
 import java.sql.Connection;
 
