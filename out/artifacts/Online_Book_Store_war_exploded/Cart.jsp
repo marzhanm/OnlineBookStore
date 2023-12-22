@@ -11,7 +11,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -21,7 +20,6 @@
   <title>Cart</title>
 </head>
 <body>
-<form action="add">
 <div style="width: 1440px; height: 1024px; position: relative; background: #EFEDDE">
   <%
     CartDAO dao=null;try {
@@ -33,12 +31,16 @@ dao = new CartDAO(DatabaseConnector.getConnection());} catch (SQLException e) {
     for (Cart c:cart){
   %>
   <div class="Group5" style="height: 84px; left: 368px; top: 181px; position: absolute">
-    <div class="KlaraAndTheSunKazuoIshiguro" style="width: 168px; left: 0px; top: 0px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">"<%=c.getBook_name()%>"  <%=c.getAuthor()%></div>
-    <div class="300" style="left: 0px; top: 64px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 600; word-wrap: break-word">$<%=c.getPrice()%></div>
+    <div class="KlaraAndTheSunKazuoIshiguro" style="width: 168px; left: 0px; top: 0px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">
+      "<%= (c != null ? c.getBook_name() : "") %>"  <%= (c != null ? c.getAuthor() : "") %>
+    </div>
+    <div class="300" style="left: 0px; top: 64px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 600; word-wrap: break-word">
+      $<%= (c != null ? c.getPrice() : "") %>
+    </div>
   </div>
   <div class="Tovar" style="left: 857px; top: 159px; position: absolute">
-    <div class="300" style="left: 360px; top: 0px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">$<%=c.getTotal_price()%></div>
-  </div>
+    <div class="300" style="left: 360px; top: 0px; position: absolute; color: black; font-size: 16px; font-family: Montserrat; font-weight: 700; word-wrap: break-word">$<%=c.getTotal_price() %></div>
+  </div><%}%>
   <div class="Line18" style="width: 560px; height: 0px; left: 64px; top: 136px; position: absolute; border: 1px #AC795A solid"></div>
   <div class="Rectangle75" style="width: 736px; height: 1024px; left: 704px; top: 0px; position: absolute; background: white"></div>
   <div class="Total" style="left: 857px; top: 290px; position: absolute">
@@ -64,6 +66,6 @@ dao = new CartDAO(DatabaseConnector.getConnection());} catch (SQLException e) {
       </div>
     </div>
 <a href="Home.jsp"><img class="SimpleLineIconsArrowUp1" style="width: 20px; height: 20px; left: 64px; top: 26px; position: absolute" src="images/simple-line-icons_arrow-up.png" /></a>
-</form>
+</div>
 </body>
 </html>
